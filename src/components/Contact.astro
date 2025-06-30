@@ -1,0 +1,209 @@
+---
+import { Mail, Phone, MapPin, Send } from 'lucide-astro';
+---
+
+<section id="contacto" class="section-padding gradient-bg">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-pistachio-900 mb-4">
+        Hablemos de tu Proyecto
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        ¿Tenes una idea en mente? Contanos sobre tu proyecto y te ayudaremos a hacerlo realidad
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-pistachio-900 mb-6">Envíanos un Mensaje</h3>
+        
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre *</label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300"
+                placeholder="Tu nombre completo"
+              >
+            </div>
+            <div>
+              <label for="empresa" class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
+              <input 
+                type="text" 
+                id="empresa" 
+                name="empresa"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300"
+                placeholder="Nombre de tu empresa"
+              >
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300"
+                placeholder="tu@email.com"
+              >
+            </div>
+            <div>
+              <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
+              <input 
+                type="tel" 
+                id="telefono" 
+                name="telefono"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300"
+                placeholder="+54 11 0000 0000"
+              >
+            </div>
+          </div>
+          
+          <div>
+            <label for="servicio" class="block text-sm font-medium text-gray-700 mb-2">Tipo de Servicio *</label>
+            <select 
+              id="servicio" 
+              name="servicio" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300"
+            >
+              <option value="">Selecciona un servicio</option>
+              <option value="desarrollo-web">Desarrollo Web</option>
+              <option value="app-movil">App Móvil</option>
+              <option value="sistema-empresarial">Sistema Empresarial</option>
+         <!--      <option value="cloud-devops">Cloud & DevOps</option>
+              <option value="ciberseguridad">Ciberseguridad</option>
+              <option value="consultoria">Consultoría IT</option> -->
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          
+          <!-- <div>
+            <label for="presupuesto" class="block text-sm font-medium text-gray-700 mb-2">Presupuesto Estimado</label>
+            <select 
+              id="presupuesto" 
+              name="presupuesto"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300"
+            >
+              <option value="">Selecciona un rango</option>
+              <option value="5k-15k">5.000€ - 15.000€</option>
+              <option value="15k-50k">15.000€ - 50.000€</option>
+              <option value="50k-100k">50.000€ - 100.000€</option>
+              <option value="100k+">Más de 100.000€</option>
+              <option value="por-definir">Por definir</option>
+            </select>
+          </div> -->
+          
+          <div>
+            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">Descripción del Proyecto *</label>
+            <textarea 
+              id="mensaje" 
+              name="mensaje" 
+              rows="5" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pistachio-500 focus:border-transparent transition-colors duration-300 resize-none"
+              placeholder="Cuéntanos sobre tu proyecto, objetivos, funcionalidades principales, etc."
+            ></textarea>
+          </div>
+          
+          <button 
+            type="submit" 
+            class="w-full btn-primary text-lg py-4 flex items-center justify-center gap-2"
+          >
+            <Send class="w-5 h-5" />
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-2xl font-bold text-pistachio-900 mb-6">Información de Contacto</h3>
+          <p class="text-gray-600 mb-8">
+            Estamos aquí para ayudarte a transformar tus ideas en realidad. 
+            No dudes en contactarnos para discutir tu proyecto.
+          </p>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-pistachio-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Mail class="w-6 h-6 text-pistachio-600" />
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-pistachio-900 mb-1">Email</h4>
+              <p class="text-gray-600">contacto@pistech.com</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-pistachio-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Phone class="w-6 h-6 text-pistachio-600" />
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-pistachio-900 mb-1">Teléfono</h4>
+              <p class="text-gray-600">+54 9 11 3820-7230</p>
+              <p class="text-gray-600">Lun - Vie: 9:00 - 18:00</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-pistachio-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <MapPin class="w-6 h-6 text-pistachio-600" />
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-pistachio-900 mb-1">Oficina</h4>
+              <p class="text-gray-600">Buenos Aires, Argentina</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Response Time -->
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <h4 class="text-lg font-semibold text-pistachio-900 mb-2">Tiempo de Respuesta</h4>
+          <p class="text-gray-600 mb-4">
+            Nos comprometemos a responder a todas las consultas en menos de 48 horas.
+          </p>
+          <div class="flex items-center gap-2 text-pistachio-600">
+            <div class="w-2 h-2 bg-pistachio-600 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium">Respuesta garantizada en 48h</span>
+          </div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <h4 class="text-lg font-semibold text-pistachio-900 mb-4">¿Por qué elegir Pistech?</h4>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-pistachio-600 rounded-full"></div>
+              Entendemos las necesidades y problemas de nuestros clientes
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-pistachio-600 rounded-full"></div>
+              Equipo especializado y experimentado
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-pistachio-600 rounded-full"></div>
+              Metodología ágil y transparente
+            </li>
+           <!--  <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-pistachio-600 rounded-full"></div>
+              Soporte post-lanzamiento incluido
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

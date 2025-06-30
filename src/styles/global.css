@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* Custom properties for pistachio colors */
+:root {
+  --pistachio-50: #f7f9f4;
+  --pistachio-100: #eef4e8;
+  --pistachio-200: #dde8d1;
+  --pistachio-300: #c4d5b0;
+  --pistachio-400: #a3bc85;
+  --pistachio-500: #8ba66a;
+  --pistachio-600: #6f8a4f;
+  --pistachio-700: #5a6e40;
+  --pistachio-800: #4a5a35;
+  --pistachio-900: #3f4b30;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+  }
+  
+  /* Optimize font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .btn-primary {
+    background-color: var(--pistachio-600);
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--pistachio-700);
+  }
+  
+  .btn-secondary {
+    background-color: white;
+    color: var(--pistachio-600);
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--pistachio-600);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--pistachio-50);
+    border-color: var(--pistachio-700);
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, var(--pistachio-50) 0%, var(--pistachio-100) 100%);
+  }
+}
+
+/* Utility styles */
+@layer utilities {
+  .container-custom {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container-custom {
+      padding: 0 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding: 0 2rem;
+    }
+  }
+  
+  /* Pistachio color utilities */
+  .text-pistachio-900 { color: var(--pistachio-900); }
+  .text-pistachio-800 { color: var(--pistachio-800); }
+  .text-pistachio-700 { color: var(--pistachio-700); }
+  .text-pistachio-600 { color: var(--pistachio-600); }
+  .text-pistachio-500 { color: var(--pistachio-500); }
+  .text-pistachio-400 { color: var(--pistachio-400); }
+  .text-pistachio-300 { color: var(--pistachio-300); }
+  .text-pistachio-200 { color: var(--pistachio-200); }
+  .text-pistachio-100 { color: var(--pistachio-100); }
+  .text-pistachio-50 { color: var(--pistachio-50); }
+  
+  .bg-pistachio-900 { background-color: var(--pistachio-900); }
+  .bg-pistachio-800 { background-color: var(--pistachio-800); }
+  .bg-pistachio-700 { background-color: var(--pistachio-700); }
+  .bg-pistachio-600 { background-color: var(--pistachio-600); }
+  .bg-pistachio-500 { background-color: var(--pistachio-500); }
+  .bg-pistachio-400 { background-color: var(--pistachio-400); }
+  .bg-pistachio-300 { background-color: var(--pistachio-300); }
+  .bg-pistachio-200 { background-color: var(--pistachio-200); }
+  .bg-pistachio-100 { background-color: var(--pistachio-100); }
+  .bg-pistachio-50 { background-color: var(--pistachio-50); }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+} 
