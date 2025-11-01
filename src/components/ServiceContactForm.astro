@@ -1,0 +1,432 @@
+---
+import { Send, MessageCircle, Clock, Shield, Users, Calendar } from 'lucide-astro';
+
+export interface Props {
+  service: 'desarrollo-web' | 'aplicaciones-moviles' | 'software-a-medida';
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  service,
+  title,
+  subtitle
+} = Astro.props;
+
+// Service-specific configurations
+const serviceConfig = {
+  'desarrollo-web': {
+    title: 'Solicita tu Presupuesto Web',
+    subtitle: 'Cuéntanos sobre tu proyecto web y te enviaremos una cotización personalizada en 24 horas.',
+    fields: [
+      { name: 'tipoWeb', label: 'Tipo de Sitio Web', type: 'select', options: ['Landing Page', 'E-commerce', 'Sitio Corporativo', 'Aplicación Web', 'Blog/Revista', 'Otro'] },
+      { name: 'diseño', label: '¿Tienes diseño?', type: 'select', options: ['Tengo diseño completo', 'Tengo ideas/referencias', 'Necesito diseño desde cero'] },
+      { name: 'funcionalidades', label: 'Funcionalidades Especiales', type: 'textarea', placeholder: 'Ej: Carrito de compras, sistema de usuarios, integración con APIs...' }
+    ],
+    whatsappMessage: 'Hola! Estoy interesado en desarrollar un sitio web. Me gustaría recibir más información y presupuesto.'
+  },
+  'aplicaciones-moviles': {
+    title: 'Convierte tu Idea en App',
+    subtitle: 'Descríbenos tu idea de app móvil y te ayudaremos a llevarla al siguiente nivel.',
+    fields: [
+      { name: 'plataforma', label: 'Plataformas Objetivo', type: 'select', options: ['iOS únicamente', 'Android únicamente', 'iOS y Android', 'No estoy seguro'] },
+      { name: 'tipoApp', label: 'Tipo de Aplicación', type: 'select', options: ['App de Negocio', 'E-commerce', 'Red Social', 'Juego', 'Productividad', 'Educativa', 'Otro'] },
+      { name: 'funcionalidades', label: 'Funcionalidades Principales', type: 'textarea', placeholder: 'Ej: Login de usuarios, notificaciones push, pagos online, GPS...' }
+    ],
+    whatsappMessage: 'Hola! Tengo una idea para una aplicación móvil y me gustaría saber cómo pueden ayudarme a desarrollarla.'
+  },
+  'software-a-medida': {
+    title: 'Automatiza tu Empresa',
+    subtitle: 'Cuéntanos qué procesos necesitas automatizar y diseñaremos la solución perfecta.',
+    fields: [
+      { name: 'tipoSoftware', label: 'Tipo de Software', type: 'select', options: ['CRM Personalizado', 'Sistema de Gestión (ERP)', 'Software de Inventario', 'Sistema de Turnos', 'Automatización de Procesos', 'Otro'] },
+      { name: 'usuariosConcurrentes', label: 'Usuarios Concurrentes', type: 'select', options: ['1-10 usuarios', '11-50 usuarios', '51-200 usuarios', '200+ usuarios'] },
+      { name: 'procesosActuales', label: 'Procesos a Automatizar', type: 'textarea', placeholder: 'Describe los procesos manuales que realizas actualmente...' }
+    ],
+    whatsappMessage: 'Hola! Necesito software a medida para automatizar procesos en mi empresa. ¿Pueden ayudarme?'
+  }
+};
+
+const config = serviceConfig[service];
+const finalTitle = title || config.title;
+const finalSubtitle = subtitle || config.subtitle;
+---
+
+<section class="service-contact-form py-16 bg-pistech-secondary">
+  <div class="container-custom">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-pistech-light mb-4">
+          {finalTitle}
+        </h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          {finalSubtitle}
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- Form -->
+        <div class="bg-pistech-dark p-8 rounded-xl border border-pistech-primary/20">
+          <form class="contact-form space-y-6" data-service={service}>
+            <!-- Información básica -->
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="nombre" class="block text-sm font-medium text-pistech-light mb-2">
+                  Nombre *
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  required
+                  class="form-input"
+                  placeholder="Tu nombre completo"
+                />
+              </div>
+              <div>
+                <label for="empresa" class="block text-sm font-medium text-pistech-light mb-2">
+                  Empresa
+                </label>
+                <input
+                  type="text"
+                  id="empresa"
+                  name="empresa"
+                  class="form-input"
+                  placeholder="Nombre de tu empresa"
+                />
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-pistech-light mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="form-input"
+                  placeholder="tu@email.com"
+                />
+              </div>
+              <div>
+                <label for="telefono" class="block text-sm font-medium text-pistech-light mb-2">
+                  Teléfono
+                </label>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  class="form-input"
+                  placeholder="+54 11 1234-5678"
+                />
+              </div>
+            </div>
+
+            <!-- Campos específicos del servicio -->
+            {config.fields.map((field) => (
+              <div>
+                <label for={field.name} class="block text-sm font-medium text-pistech-light mb-2">
+                  {field.label}
+                </label>
+                {field.type === 'select' ? (
+                  <select id={field.name} name={field.name} class="form-input">
+                    <option value="">Selecciona una opción</option>
+                    {field.options.map((option) => (
+                      <option value={option}>{option}</option>
+                    ))}
+                  </select>
+                ) : field.type === 'textarea' ? (
+                  <textarea
+                    id={field.name}
+                    name={field.name}
+                    rows="4"
+                    class="form-input"
+                    placeholder={field.placeholder}
+                  ></textarea>
+                ) : (
+                  <input
+                    type={field.type}
+                    id={field.name}
+                    name={field.name}
+                    class="form-input"
+                    placeholder={field.placeholder}
+                  />
+                )}
+              </div>
+            ))}
+
+            <!-- Presupuesto estimado -->
+            <div>
+              <label for="presupuesto" class="block text-sm font-medium text-pistech-light mb-2">
+                Presupuesto Estimado (USD)
+              </label>
+              <select id="presupuesto" name="presupuesto" class="form-input">
+                <option value="">Selecciona un rango</option>
+                <option value="menos-5k">Menos de $5,000</option>
+                <option value="5k-15k">$5,000 - $15,000</option>
+                <option value="15k-30k">$15,000 - $30,000</option>
+                <option value="30k-50k">$30,000 - $50,000</option>
+                <option value="mas-50k">Más de $50,000</option>
+              </select>
+            </div>
+
+            <!-- Timeline -->
+            <div>
+              <label for="timeline" class="block text-sm font-medium text-pistech-light mb-2">
+                ¿Cuándo necesitas el proyecto?
+              </label>
+              <select id="timeline" name="timeline" class="form-input">
+                <option value="">Selecciona un plazo</option>
+                <option value="urgente">Lo antes posible (1-2 semanas)</option>
+                <option value="rapido">En el próximo mes</option>
+                <option value="normal">En 2-3 meses</option>
+                <option value="flexible">No tengo prisa</option>
+              </select>
+            </div>
+
+            <!-- Mensaje adicional -->
+            <div>
+              <label for="mensaje" class="block text-sm font-medium text-pistech-light mb-2">
+                Información Adicional
+              </label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                class="form-input"
+                placeholder="Cuéntanos más detalles sobre tu proyecto, objetivos, referencias que te gusten..."
+              ></textarea>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                type="submit"
+                class="btn-primary flex-1 py-3 px-6 inline-flex items-center justify-center"
+              >
+                <Send class="w-5 h-5 mr-2" />
+                Enviar Solicitud
+              </button>
+              <a
+                href={`https://wa.me/5491123456789?text=${encodeURIComponent(config.whatsappMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-secondary flex-1 py-3 px-6 inline-flex items-center justify-center"
+              >
+                <MessageCircle class="w-5 h-5 mr-2" />
+                WhatsApp Directo
+              </a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Benefits sidebar -->
+        <div class="space-y-6">
+          <div class="bg-pistech-dark p-6 rounded-xl border border-pistech-primary/20">
+            <h3 class="text-xl font-semibold text-pistech-light mb-4 flex items-center">
+              <Clock class="w-5 h-5 text-pistech-accent mr-2" />
+              Respuesta Rápida
+            </h3>
+            <p class="text-gray-300 text-sm">
+              Te respondemos en menos de 24 horas con una propuesta inicial y próximos pasos.
+            </p>
+          </div>
+
+          <div class="bg-pistech-dark p-6 rounded-xl border border-pistech-primary/20">
+            <h3 class="text-xl font-semibold text-pistech-light mb-4 flex items-center">
+              <Shield class="w-5 h-5 text-pistech-accent mr-2" />
+              Información Segura
+            </h3>
+            <p class="text-gray-300 text-sm">
+              Tus datos están protegidos. Solo los usamos para contactarte sobre tu proyecto.
+            </p>
+          </div>
+
+          <div class="bg-pistech-dark p-6 rounded-xl border border-pistech-primary/20">
+            <h3 class="text-xl font-semibold text-pistech-light mb-4 flex items-center">
+              <Users class="w-5 h-5 text-pistech-accent mr-2" />
+              Consulta Sin Compromiso
+            </h3>
+            <p class="text-gray-300 text-sm">
+              La consulta inicial es completamente gratuita y sin ningún compromiso.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-r from-pistech-primary/10 to-pistech-accent/10 p-6 rounded-xl border border-pistech-primary/20">
+            <h3 class="text-lg font-semibold text-pistech-light mb-2">
+              ¿Prefieres hablar directamente?
+            </h3>
+            <p class="text-gray-300 text-sm mb-4">
+              Agenda una videollamada gratuita de 30 minutos para discutir tu proyecto.
+            </p>
+            <a
+              href="https://calendly.com/pistech/consulta-gratuita"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-pistech-accent hover:text-pistech-primary transition-colors"
+            >
+              <Calendar class="w-4 h-4 mr-2" />
+              Agendar Consulta
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(17, 18, 20, 0.8);
+    border: 2px solid rgba(147, 197, 114, 0.2);
+    border-radius: 8px;
+    color: #E4E4E7;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #93C572;
+    box-shadow: 0 0 0 3px rgba(147, 197, 114, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: rgba(228, 228, 231, 0.5);
+  }
+
+  .form-input option {
+    background: #111214;
+    color: #E4E4E7;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #A3E635, #93C572);
+    color: #111214;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(163, 230, 53, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #93C572;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 2px solid #93C572;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: #93C572;
+    color: #111214;
+  }
+
+  .contact-form {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading state for form submission */
+  .form-loading .btn-primary {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .form-loading .btn-primary::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid #111214;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+  // Form submission handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('.contact-form');
+
+    forms.forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Add loading state
+        form.classList.add('form-loading');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<svg class="w-5 h-5 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v4m0 12v4m8-8h-4M6 12H2m15.364-7.364l-2.828 2.828M9.464 9.464L6.636 6.636m12.728 12.728l-2.828-2.828M9.464 14.536l-2.828 2.828"></path></svg>Enviando...';
+
+        // Collect form data
+        const formData = new FormData(form);
+        const service = form.dataset.service;
+
+        // Here you would normally send to your backend
+        // For now, we'll simulate a successful submission
+        setTimeout(() => {
+          // Remove loading state
+          form.classList.remove('form-loading');
+          submitBtn.innerHTML = originalText;
+
+          // Show success message
+          showSuccessMessage(form);
+
+          // Optional: Reset form
+          form.reset();
+        }, 2000);
+      });
+    });
+
+    function showSuccessMessage(form) {
+      const successDiv = document.createElement('div');
+      successDiv.className = 'success-message bg-green-500/10 border border-green-500/30 text-green-400 p-4 rounded-lg mb-6';
+      successDiv.innerHTML = `
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          ¡Solicitud enviada exitosamente! Te contactaremos pronto.
+        </div>
+      `;
+
+      form.insertBefore(successDiv, form.firstChild);
+
+      // Remove success message after 5 seconds
+      setTimeout(() => {
+        successDiv.remove();
+      }, 5000);
+    }
+  });
+</script>

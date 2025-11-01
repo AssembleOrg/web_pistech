@@ -1,0 +1,953 @@
+---
+import { Image } from 'astro:assets';
+
+// Dynamic Banner component inspired by reference images
+export interface Props {
+  section: 'inicio' | 'servicios' | 'proyectos' | 'contacto' | 'desarrollo-web' | 'aplicaciones-moviles' | 'software-a-medida';
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  badge?: string;
+}
+
+const {
+  section = 'inicio',
+  title,
+  subtitle,
+  ctaText = "Comenzar Proyecto",
+  ctaLink = "#contacto",
+  badge
+} = Astro.props;
+
+// Default content for service pages with specific intros
+const getDefaultContent = (section) => {
+  const defaults = {
+    'desarrollo-web': {
+      title: 'Sitios Web que <span class="text-pistech-accent">Venden</span>',
+      subtitle: 'Páginas optimizadas que convierten visitantes en clientes. Aparecés en Google y cargás súper rápido.',
+      badge: 'Web que Convierte'
+    },
+    'aplicaciones-moviles': {
+      title: 'Tu App en <span class="text-pistech-accent">el Bolsillo</span> de tus Clientes',
+      subtitle: 'Apps que tus usuarios van a amar. Para iOS, Android o ambas plataformas.',
+      badge: 'Apps que Conectan'
+    },
+    'software-a-medida': {
+      title: 'Software que se <span class="text-pistech-accent">Adapta a Vos</span>',
+      subtitle: 'Dejá de perder tiempo con sistemas complicados. Software simple que automatiza tu trabajo.',
+      badge: 'A tu Medida'
+    }
+  };
+  return defaults[section] || {};
+};
+
+const defaultContent = getDefaultContent(section);
+const finalTitle = title || defaultContent.title || 'PISTECH Solutions';
+const finalSubtitle = subtitle || defaultContent.subtitle || 'Tecnología que transforma tu negocio';
+const finalBadge = badge || defaultContent.badge;
+
+// Configuración de personas profesionales por sección
+const getPersonConfig = (section) => {
+  const personMap = {
+    inicio: {
+      name: 'Desarrollador Senior',
+      style: 'developer',
+      gradient: 'from-blue-500 to-green-500'
+    },
+    servicios: {
+      name: 'Consultora Tech',
+      style: 'consultant',
+      gradient: 'from-green-500 to-yellow-500'
+    },
+    proyectos: {
+      name: 'Project Manager',
+      style: 'manager',
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    contacto: {
+      name: 'Especialista en Soluciones',
+      style: 'support',
+      gradient: 'from-teal-500 to-blue-500'
+    },
+    'desarrollo-web': {
+      name: 'Web que Funciona',
+      style: 'web-developer',
+      gradient: 'from-blue-500 to-green-500',
+      avatar: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop'
+    },
+    'aplicaciones-moviles': {
+      name: 'Apps que Gustan',
+      style: 'mobile-developer',
+      gradient: 'from-green-500 to-blue-500',
+      avatar: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop'
+    },
+    'software-a-medida': {
+      name: 'Software Simple',
+      style: 'software-architect',
+      gradient: 'from-purple-500 to-green-500',
+      avatar: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop'
+    }
+  };
+  return personMap[section] || personMap.inicio;
+};
+
+const personConfig = getPersonConfig(section);
+
+// Section-specific configurations
+const sectionConfig = {
+  inicio: {
+    shapes: ['shape-green', 'shape-accent'],
+    gradient: 'from-pistech-dark via-pistech-secondary to-pistech-dark',
+    illustration: 'dev-setup'
+  },
+  servicios: {
+    shapes: ['shape-accent', 'shape-yellow'],
+    gradient: 'from-pistech-secondary via-pistech-dark to-pistech-secondary',
+    illustration: 'services-tech'
+  },
+  proyectos: {
+    shapes: ['shape-green', 'shape-gradient'],
+    gradient: 'from-pistech-dark via-gray-900 to-pistech-dark',
+    illustration: 'portfolio-showcase'
+  },
+  contacto: {
+    shapes: ['shape-accent', 'shape-green'],
+    gradient: 'from-pistech-secondary via-pistech-dark to-pistech-secondary',
+    illustration: 'contact-person'
+  },
+  'desarrollo-web': {
+    shapes: ['shape-green', 'shape-accent'],
+    gradient: 'from-pistech-dark via-blue-900/20 to-pistech-dark',
+    illustration: 'web-development'
+  },
+  'aplicaciones-moviles': {
+    shapes: ['shape-accent', 'shape-gradient'],
+    gradient: 'from-pistech-secondary via-green-900/20 to-pistech-secondary',
+    illustration: 'mobile-development'
+  },
+  'software-a-medida': {
+    shapes: ['shape-gradient', 'shape-green'],
+    gradient: 'from-pistech-dark via-purple-900/20 to-pistech-dark',
+    illustration: 'custom-software'
+  }
+};
+
+const config = sectionConfig[section];
+---
+
+<section class={`dynamic-banner relative min-h-[70vh] lg:min-h-[80vh] flex items-center overflow-hidden section-${section}`}>
+
+  <!-- Background with gradient -->
+  <div class={`absolute inset-0 bg-gradient-to-br ${config.gradient}`}></div>
+
+  <!-- Geometric shapes (inspired by reference) -->
+  <div class="shapes-container absolute inset-0 overflow-hidden">
+    <div class={`geometric-shape shape-1 ${config.shapes[0]}`}></div>
+    <div class={`geometric-shape shape-2 ${config.shapes[1]}`}></div>
+    <div class="geometric-shape shape-3 shape-outline"></div>
+  </div>
+
+  <!-- Main content container -->
+  <div class="container-custom mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[60vh]">
+
+      <!-- Left side: Content -->
+      <div class="content-side space-y-6 lg:space-y-8">
+
+        <!-- Badge (if provided) -->
+        {finalBadge && (
+          <div class="inline-flex items-center">
+            <div class="service-badge">
+              <span class="badge-icon">●</span>
+              <span class="badge-text">{finalBadge}</span>
+              <div class="badge-glow"></div>
+            </div>
+          </div>
+        )}
+
+        <!-- Main title -->
+        <h1 class="banner-title">
+          <span class="title-highlight" set:html={finalTitle}></span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="banner-subtitle">
+          {finalSubtitle}
+        </p>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+          <a href={ctaLink} class="cta-modern group">
+            <span class="cta-content">
+              <span class="cta-text">{ctaText}</span>
+              <svg class="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+            <div class="cta-bg"></div>
+            <div class="cta-border"></div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right side: Illustration/Person -->
+      <div class="illustration-side relative">
+        <div class="person-container">
+
+          <!-- Marketing image or AI placeholder -->
+          <div class="visual-frame">
+            {personConfig.avatar ? (
+              <!-- Marketing image for service pages -->
+              <div class={`marketing-visual ${personConfig.style}`}>
+                <img
+                  src={personConfig.avatar}
+                  alt={`${personConfig.name} - PISTECH`}
+                  class="marketing-image"
+                />
+                <div class="marketing-overlay">
+                  <div class="marketing-badge">
+                    <span class="marketing-text">{personConfig.name}</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <!-- AI-style placeholder for other sections -->
+              <div class={`person-ai-placeholder ${personConfig.style}`}>
+                <div class="ai-avatar">
+                  <div class="avatar-gradient" style={`background: linear-gradient(135deg, #93C572, #A3E635)`}></div>
+                  <div class="avatar-features">
+                    <div class="feature-eyes"></div>
+                    <div class="feature-mouth"></div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {!personConfig.avatar && (
+              <!-- Elementos profesionales para AI placeholder -->
+              <div class="professional-elements">
+                <div class="element element-laptop">
+                  <svg width="32" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <div class="element element-code">
+                  <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Badge dinámico para AI -->
+              <div class="ai-person-badge">
+                <span class="badge-text">{personConfig.name}</span>
+                <div class="badge-indicator"></div>
+              </div>
+            )}
+
+            <!-- Datos profesionales -->
+            <div class="person-stats">
+              <div class="stat">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Años Exp.</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Proyectos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating tech elements -->
+          <div class="floating-elements">
+            <div class="tech-element element-1">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <div class="tech-element element-2">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div class="tech-element element-3">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* Container styles */
+  .dynamic-banner {
+    position: relative;
+    background: linear-gradient(135deg, #111214 0%, #1C1D20 50%, #111214 100%);
+  }
+
+  /* Geometric shapes (inspired by reference images) */
+  .shapes-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .geometric-shape {
+    position: absolute;
+    border-radius: 20% 80% 30% 70% / 50% 60% 40% 50%;
+    opacity: 0.6;
+    animation: float-shape 8s ease-in-out infinite;
+  }
+
+  /* Shape variants */
+  .shape-green {
+    background: linear-gradient(135deg, #93C572, rgba(147, 197, 114, 0.3));
+    width: 300px;
+    height: 400px;
+    top: 10%;
+    right: 5%;
+    animation-delay: 0s;
+  }
+
+  .shape-accent {
+    background: linear-gradient(45deg, #A3E635, rgba(163, 230, 53, 0.2));
+    width: 200px;
+    height: 300px;
+    bottom: 15%;
+    left: -5%;
+    animation-delay: 2s;
+  }
+
+  .shape-yellow {
+    background: linear-gradient(225deg, #fbbf24, rgba(251, 191, 36, 0.3));
+    width: 250px;
+    height: 350px;
+    top: 20%;
+    right: 10%;
+    animation-delay: 1s;
+  }
+
+  .shape-outline {
+    background: none;
+    border: 2px solid rgba(147, 197, 114, 0.3);
+    width: 180px;
+    height: 250px;
+    top: 50%;
+    left: 20%;
+    animation-delay: 3s;
+  }
+
+  .shape-gradient {
+    background: linear-gradient(135deg, #93C572, #A3E635, #93C572);
+    width: 220px;
+    height: 320px;
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes float-shape {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  /* Content styles */
+  .content-side {
+    animation: slide-in-left 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  @keyframes slide-in-left {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Badge styles */
+  .service-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(147, 197, 114, 0.1);
+    border: 1px solid rgba(147, 197, 114, 0.3);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+  }
+
+  .badge-icon {
+    color: #A3E635;
+    font-size: 12px;
+    animation: pulse 2s infinite;
+  }
+
+  .badge-text {
+    color: #93C572;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+
+  /* Title styles */
+  .banner-title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: #E4E4E7;
+    margin-bottom: 1rem;
+  }
+
+  .title-highlight {
+    background: linear-gradient(135deg, #E4E4E7 0%, #93C572 50%, #A3E635 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  /* Subtitle styles */
+  .banner-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(228, 228, 231, 0.8);
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  /* CTA Button (inspired by reference) */
+  .cta-modern {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    color: #111214;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(163, 230, 53, 0.25);
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #A3E635 0%, #93C572 100%);
+    transition: transform 0.3s ease;
+  }
+
+  .cta-border {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, transparent, rgba(163, 230, 53, 0.5), transparent);
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cta-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(163, 230, 53, 0.4);
+  }
+
+  .cta-modern:hover .cta-bg {
+    transform: scale(1.05);
+  }
+
+  .cta-modern:hover .cta-border {
+    opacity: 1;
+  }
+
+  .cta-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-modern:hover .cta-icon {
+    transform: translateX(4px);
+  }
+
+  /* Illustration side */
+  .illustration-side {
+    animation: slide-in-right 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  @keyframes slide-in-right {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .person-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+
+  /* Visual frame for marketing images */
+  .visual-frame {
+    position: relative;
+    width: 320px;
+    height: 280px;
+    background: linear-gradient(135deg, rgba(228, 228, 231, 0.1), rgba(147, 197, 114, 0.05));
+    border-radius: 20px;
+    border: 1px solid rgba(147, 197, 114, 0.2);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+  }
+
+  .person-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+  }
+
+  .person-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #93C572, #A3E635);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .person-icon {
+    width: 40px;
+    height: 40px;
+    color: #111214;
+  }
+
+  .device-placeholder {
+    width: 120px;
+    height: 80px;
+    background: rgba(17, 18, 20, 0.8);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(147, 197, 114, 0.3);
+  }
+
+  .device-icon {
+    width: 40px;
+    height: 40px;
+    color: #93C572;
+  }
+
+  /* Marketing visual styles */
+  .marketing-visual {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .marketing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+  }
+
+  .marketing-visual:hover .marketing-image {
+    transform: scale(1.05);
+  }
+
+  .marketing-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(17, 18, 20, 0.8));
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .marketing-visual:hover .marketing-overlay {
+    opacity: 1;
+  }
+
+  .marketing-badge {
+    background: rgba(147, 197, 114, 0.9);
+    color: #111214;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(147, 197, 114, 0.3);
+  }
+
+  .marketing-text {
+    color: #111214;
+  }
+
+  .person-avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .device-img {
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+
+  /* AI-style professional placeholder */
+  .person-ai-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(17, 18, 20, 0.95), rgba(28, 29, 32, 0.9));
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Avatar principal estilo AI */
+  .ai-avatar {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar-gradient {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(147, 197, 114, 0.3);
+  }
+
+  .avatar-features {
+    position: absolute;
+    inset: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .feature-eyes {
+    width: 30px;
+    height: 8px;
+    background: #111214;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .feature-eyes::before,
+  .feature-eyes::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #111214;
+    border-radius: 50%;
+    top: 1px;
+  }
+
+  .feature-eyes::before { left: 6px; }
+  .feature-eyes::after { right: 6px; }
+
+  .feature-mouth {
+    width: 20px;
+    height: 10px;
+    border: 2px solid #111214;
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    margin-top: 4px;
+  }
+
+  /* Elementos profesionales flotantes */
+  .professional-elements {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .element {
+    width: 50px;
+    height: 50px;
+    background: rgba(147, 197, 114, 0.1);
+    border: 2px solid rgba(147, 197, 114, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #93C572;
+    animation: float-element 4s ease-in-out infinite;
+  }
+
+  .element-laptop {
+    animation-delay: 0s;
+  }
+
+  .element-code {
+    animation-delay: 1s;
+  }
+
+  /* Badge dinámico */
+  .ai-person-badge {
+    background: rgba(147, 197, 114, 0.15);
+    border: 1px solid rgba(147, 197, 114, 0.4);
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-text {
+    color: #93C572;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .badge-indicator {
+    width: 8px;
+    height: 8px;
+    background: #A3E635;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
+  }
+
+  /* Estadísticas profesionales */
+  .person-stats {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .stat {
+    text-align: center;
+    background: rgba(17, 18, 20, 0.8);
+    padding: 8px 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 197, 114, 0.2);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #A3E635;
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 10px;
+    color: rgba(228, 228, 231, 0.7);
+    margin-top: 2px;
+  }
+
+  /* Variaciones por tipo de profesional */
+  .person-ai-placeholder.developer .avatar-gradient {
+    background: linear-gradient(135deg, #93C572, #A3E635) !important;
+  }
+
+  .person-ai-placeholder.consultant .avatar-gradient {
+    background: linear-gradient(135deg, #A3E635, #93C572) !important;
+  }
+
+  .person-ai-placeholder.manager .avatar-gradient {
+    background: linear-gradient(135deg, #93C572, #8B7BD8) !important;
+  }
+
+  .person-ai-placeholder.support .avatar-gradient {
+    background: linear-gradient(135deg, #14B8A6, #93C572) !important;
+  }
+
+  /* Hover effects */
+  .person-frame:hover .ai-avatar {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  .person-frame:hover .element {
+    animation-duration: 2s;
+  }
+
+  .person-frame:hover .badge-indicator {
+    animation-duration: 1s;
+  }
+
+  /* Floating tech elements */
+  .floating-elements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .tech-element {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(147, 197, 114, 0.1);
+    border: 1px solid rgba(147, 197, 114, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #93C572;
+    backdrop-filter: blur(10px);
+    animation: float-element 6s ease-in-out infinite;
+  }
+
+  .tech-element svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .element-1 {
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+  }
+
+  .element-2 {
+    bottom: 30%;
+    left: 5%;
+    animation-delay: 2s;
+  }
+
+  .element-3 {
+    top: 60%;
+    right: 5%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float-element {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+    50% { transform: translateY(-15px) rotate(180deg); opacity: 1; }
+  }
+
+  /* Responsive design */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .person-frame {
+      width: 240px;
+      height: 280px;
+    }
+
+    .geometric-shape {
+      opacity: 0.3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dynamic-banner {
+      min-h: 60vh;
+      padding: 3rem 0;
+    }
+
+    .person-container {
+      min-height: 300px;
+    }
+
+    .person-frame {
+      width: 200px;
+      height: 240px;
+    }
+
+    .floating-elements {
+      display: none;
+    }
+
+    .geometric-shape {
+      display: none;
+    }
+  }
+
+  /* Section-specific animations */
+  .section-inicio .geometric-shape {
+    animation-duration: 8s;
+  }
+
+  .section-servicios .geometric-shape {
+    animation-duration: 10s;
+  }
+
+  .section-proyectos .geometric-shape {
+    animation-duration: 12s;
+  }
+
+  .section-contacto .geometric-shape {
+    animation-duration: 6s;
+  }
+</style>

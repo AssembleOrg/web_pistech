@@ -4,6 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
+        pistech: {
+          // Verde PISTECH - Primario (logos, elementos de marca, iconos)
+          primary: '#93C572',
+
+          // Verde Brillante - Acento de Interacción (CTAs, hover)
+          accent: '#A3E635',
+
+          // Fondo Principal - Casi Negro (fondo principal)
+          dark: '#111214',
+
+          // Gris Secundario - Contenedores (tarjetas, contenedores)
+          secondary: '#1C1D20',
+
+          // Texto y Elementos Claros - Gris Claro (texto principal)
+          light: '#E4E4E7',
+        },
+        // Mantener pistachio para compatibilidad con código existente
         pistachio: {
           50: '#f7f9f4',
           100: '#eef4e8',
@@ -11,7 +28,7 @@ export default {
           300: '#c4d5b0',
           400: '#a3bc85',
           500: '#8ba66a',
-          600: '#6f8a4f',
+          600: '#93C572', // Actualizado al verde PISTECH
           700: '#5a6e40',
           800: '#4a5a35',
           900: '#3f4b30',

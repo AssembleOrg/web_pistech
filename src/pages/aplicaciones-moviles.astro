@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DynamicBanner from '../components/DynamicBanner.astro';
+import ServiceContactForm from '../components/ServiceContactForm.astro';
+import { AlertTriangle, CheckCircle, Smartphone, Zap, Layers, Shield, TrendingUp, MessageCircle } from 'lucide-astro';
+---
+
+<Layout
+	title="Desarrollo de Aplicaciones Móviles | PISTECH"
+	description="Desarrollamos aplicaciones móviles nativas e híbridas que conectan con tus usuarios. iOS, Android, React Native y Flutter. ¡Transforma tu idea en app!"
+	heroTitle="Aplicaciones Móviles que Conectan"
+	canonical="/aplicaciones-moviles"
+>
+	<!-- Dynamic Banner for Mobile Apps -->
+	<DynamicBanner section="aplicaciones-moviles" />
+
+	<!-- Main Content -->
+	<section class="py-20 bg-pistech-dark">
+		<div class="container-custom">
+			<div class="max-w-4xl mx-auto">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold text-pistech-light mb-6">
+						Apps que <span class="text-pistech-accent">Funcionan</span>
+					</h2>
+					<p class="text-xl text-gray-300">
+						<strong class="text-pistech-primary">iOS, Android o ambas.</strong> Tu app lista en 8 semanas.
+					</p>
+				</div>
+
+				<!-- Quick Value Props -->
+				<div class="grid md:grid-cols-3 gap-8 mb-16">
+					<div class="text-center p-6 bg-pistech-secondary rounded-xl border border-pistech-primary/20">
+						<Smartphone class="w-12 h-12 text-pistech-accent mx-auto mb-4" />
+						<h3 class="text-lg font-semibold text-pistech-light mb-2">Nativa o Híbrida</h3>
+						<p class="text-gray-300 text-sm">Elegimos la mejor tecnología para tu proyecto</p>
+					</div>
+
+					<div class="text-center p-6 bg-pistech-secondary rounded-xl border border-pistech-primary/20">
+						<CheckCircle class="w-12 h-12 text-pistech-accent mx-auto mb-4" />
+						<h3 class="text-lg font-semibold text-pistech-light mb-2">En las Tiendas</h3>
+						<p class="text-gray-300 text-sm">Te ayudamos a publicar en App Store y Google Play</p>
+					</div>
+
+					<div class="text-center p-6 bg-pistech-secondary rounded-xl border border-pistech-primary/20">
+						<TrendingUp class="w-12 h-12 text-pistech-accent mx-auto mb-4" />
+						<h3 class="text-lg font-semibold text-pistech-light mb-2">Que Convierte</h3>
+						<p class="text-gray-300 text-sm">Diseño optimizado para engagement y retención</p>
+					</div>
+				</div>
+
+				<!-- Simple Process -->
+				<div class="text-center bg-pistech-secondary p-8 rounded-xl border border-pistech-primary/20 mb-16">
+					<h3 class="text-2xl font-bold text-pistech-light mb-6">
+						Tu App en <span class="text-pistech-accent">3 Pasos</span>
+					</h3>
+					<div class="grid md:grid-cols-3 gap-6 text-center">
+						<div>
+							<div class="text-3xl font-bold text-pistech-accent mb-2">1</div>
+							<p class="text-pistech-light font-semibold">Diseñamos</p>
+							<p class="text-gray-400 text-sm">Tu idea + nuestro UX</p>
+						</div>
+						<div>
+							<div class="text-3xl font-bold text-pistech-accent mb-2">2</div>
+							<p class="text-pistech-light font-semibold">Desarrollamos</p>
+							<p class="text-gray-400 text-sm">8 semanas de trabajo</p>
+						</div>
+						<div>
+							<div class="text-3xl font-bold text-pistech-accent mb-2">3</div>
+							<p class="text-pistech-light font-semibold">Publicamos</p>
+							<p class="text-gray-400 text-sm">Lista en las tiendas</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- CTA Section -->
+				<div class="text-center bg-gradient-to-r from-pistech-primary/10 to-pistech-accent/10 p-12 rounded-2xl border border-pistech-primary/20">
+					<h3 class="text-3xl font-bold text-pistech-light mb-4">
+						¿Tenés una Idea?
+					</h3>
+					<p class="text-xl text-gray-300 mb-8">
+						<strong class="text-pistech-accent">La convertimos en app en 8 semanas.</strong>
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+						<a
+							href="https://wa.me/5491123456789?text=Hola!%20Quiero%20desarrollar%20una%20aplicación%20móvil%20para%20mi%20negocio.%20¿Pueden%20ayudarme?"
+							class="btn-primary text-lg px-8 py-4 inline-flex items-center"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<MessageCircle class="w-5 h-5 mr-2" />
+							Consulta Gratuita
+						</a>
+						<div class="text-center">
+							<p class="text-pistech-accent font-semibold">Desde USD $8,999</p>
+							<p class="text-sm text-gray-400">Financiación disponible</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Formulario de contacto específico para apps móviles -->
+	<ServiceContactForm service="aplicaciones-moviles" />
+</Layout>
+
+<style>
+	.btn-primary {
+		animation: pulse-glow 2s infinite;
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			box-shadow: 0 0 20px rgba(163, 230, 53, 0.3);
+		}
+		50% {
+			box-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
+		}
+	}
+
+	.container-custom {
+		animation: fadeInUp 0.8s ease-out;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

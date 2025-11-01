@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DynamicBanner from '../components/DynamicBanner.astro';
+
+const title = "Servicios - PISTECH | Desarrollo Web y Apps";
+const description = "Servicios especializados en desarrollo web, aplicaciones móviles y software a medida. Transformamos tu negocio con tecnología.";
+const heroTitle = "Nuestros Servicios Tecnológicos";
+---
+
+<Layout
+  title={title}
+  description={description}
+  heroTitle={heroTitle}
+>
+  <!-- Banner dinámico para servicios -->
+  <DynamicBanner
+    section="servicios"
+    title="Desarrollamos <strong>Soluciones</strong> que Transforman"
+    subtitle="Especialistas en crear tecnología que impulsa el crecimiento de tu negocio"
+    ctaText="Solicitar Presupuesto"
+    ctaLink="#contacto"
+    badge="⚡ Expertos en Desarrollo"
+  />
+
+  <!-- Aquí irían las secciones de servicios detallados -->
+  <section class="py-20 px-4">
+    <div class="container-custom mx-auto">
+      <h2 class="text-3xl font-bold text-pistech-primary mb-8">Servicios Detallados</h2>
+      <!-- Contenido específico de servicios -->
+    </div>
+  </section>
+
+</Layout>

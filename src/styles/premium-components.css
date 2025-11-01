@@ -1,0 +1,277 @@
+/* Premium Components Styles for PISTECH */
+
+/* Process Section Styles */
+.process-card {
+  background-color: #1C1D20; /* pistech-secondary */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(147, 197, 114, 0.2);
+  text-align: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.process-card:hover {
+  border-color: rgba(147, 197, 114, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(147, 197, 114, 0.15);
+}
+
+.process-number {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #A3E635;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #A3E635, #93C572);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.process-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem auto;
+  color: #93C572;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(147, 197, 114, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.process-card:hover .process-icon {
+  color: #A3E635;
+  background: rgba(163, 230, 53, 0.2);
+  transform: scale(1.1);
+}
+
+.process-line {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #93C572, transparent);
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+
+.process-card:last-child .process-line {
+  display: none;
+}
+
+/* Portfolio Section Styles */
+.portfolio-card {
+  background-color: #111214; /* pistech-dark */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(147, 197, 114, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-card:hover {
+  border-color: rgba(147, 197, 114, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(147, 197, 114, 0.2);
+}
+
+.portfolio-image {
+  position: relative;
+  height: 12rem;
+  background: linear-gradient(45deg, #1C1D20, #111214);
+  overflow: hidden;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(147, 197, 114, 0.5);
+  background: linear-gradient(45deg, rgba(147, 197, 114, 0.1), rgba(163, 230, 53, 0.05));
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(17, 18, 20, 0.8);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(147, 197, 114, 0.2);
+  color: #93C572;
+  border-radius: 0.375rem;
+  backdrop-filter: blur(10px);
+}
+
+.portfolio-content {
+  padding: 1.5rem;
+}
+
+.portfolio-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #A3E635;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat::before {
+  content: '-';
+  color: #93C572;
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .process-line {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-card {
+    padding: 1rem;
+  }
+
+  .process-number {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .process-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .portfolio-card {
+    margin-bottom: 1.25rem;
+  }
+
+  .portfolio-image {
+    height: 10rem;
+  }
+
+  .portfolio-content {
+    padding: 1rem;
+  }
+
+  .portfolio-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Scroll Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.process-card,
+.portfolio-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.process-card:nth-child(1) { animation-delay: 0.1s; }
+.process-card:nth-child(2) { animation-delay: 0.2s; }
+.process-card:nth-child(3) { animation-delay: 0.3s; }
+.process-card:nth-child(4) { animation-delay: 0.4s; }
+
+.portfolio-card:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-card:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Enhanced hover effects */
+.process-card::before,
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #93C572, #A3E635);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.process-card:hover::before,
+.portfolio-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Loading states */
+.portfolio-card .image-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-card .image-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(147, 197, 114, 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Accessibility improvements */
+.process-card:focus-within,
+.portfolio-card:focus-within {
+  outline: 2px solid #93C572;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .process-card,
+  .portfolio-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

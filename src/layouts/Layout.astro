@@ -1,100 +1,188 @@
 ---
 import '../styles/global.css';
+import '../styles/premium-components.css';
+import { SEO } from 'astro-seo';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import ScrollAnimations from '../components/ScrollAnimations.astro';
 
+// Define interface for Layout props
 export interface Props {
 	title: string;
 	description?: string;
+	heroTitle?: string;
+	image?: string;
+	canonical?: string;
+	showHero?: boolean;
 }
 
-const { title, description = "Pistech - Software Factory especializada en desarrollo de soluciones digitales innovadoras y de alta calidad." } = Astro.props;
+const {
+	title,
+	description = "Pistech - Software Factory especializada en desarrollo de soluciones digitales innovadoras y de alta calidad.",
+	heroTitle,
+	image = "/og-image.jpg",
+	canonical,
+	showHero = false
+} = Astro.props;
+
+const siteUrl = "https://pistech.com"; // Replace with your actual domain
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		
+		<meta charset="UTF-8">
+		<SEO
+			title={title}
+			description={description}
+			canonical={canonical ? new URL(canonical, siteUrl).href : undefined}
+			openGraph={{
+				basic: {
+					title: title,
+					type: "website",
+					image: new URL(image, siteUrl).href,
+					url: canonical ? new URL(canonical, siteUrl).href : siteUrl
+				},
+				optional: {
+					description: description,
+					locale: "es_ES",
+					siteName: "Pistech"
+				},
+				image: {
+					url: new URL(image, siteUrl).href,
+					alt: title,
+					width: 1200,
+					height: 630
+				}
+			}}
+			twitter={{
+				card: "summary_large_image",
+				site: "@pistech",
+				creator: "@pistech",
+				title: title,
+				description: description,
+				image: new URL(image, siteUrl).href,
+				imageAlt: title
+			}}
+			extend={{
+				meta: [
+					{ name: "theme-color", content: "#93C572" },
+					{ name: "viewport", content: "width=device-width, initial-scale=1.0" },
+					{ name: "generator", content: Astro.generator },
+					{ name: "robots", content: "index, follow" },
+					{ name: "author", content: "Pistech" },
+					{ name: "language", content: "Spanish" }
+				],
+				link: [
+					{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+					{ rel: "sitemap", href: "/sitemap-index.xml" }
+				]
+			}}
+		/>
+
 		<!-- Preload critical fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 		<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-		
-		<!-- Performance optimizations -->
-		<meta name="theme-color" content="#6f8a4f">
-		<meta property="og:title" content={title}>
-		<meta property="og:description" content={description}>
-		<meta property="og:type" content="website">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content={title}>
-		<meta name="twitter:description" content={description}>
-		
+
 		<!-- Critical CSS inline for above-the-fold content -->
 		<style>
-			/* Critical CSS for LCP optimization */
-			body { 
-				margin: 0; 
-				font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+			/* Critical CSS for LCP optimization - PISTECH Colors */
+			body {
+				margin: 0;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
 				line-height: 1.6;
-				color: #1f2937;
-				background-color: #ffffff;
+				color: #E4E4E7; /* pistech-light */
+				background-color: #111214; /* pistech-dark */
 			}
-			.gradient-bg { 
-				background: linear-gradient(135deg, #f7f9f4 0%, #eef4e8 100%); 
+
+			/* Layout utilities */
+			.container-custom {
+				max-width: 80rem;
+				margin: 0 auto;
+				padding: 0 1rem;
 			}
-			.container-custom { 
-				max-width: 80rem; 
-				margin: 0 auto; 
-				padding: 0 1rem; 
+			@media (min-width: 640px) {
+				.container-custom {
+					padding: 0 1.5rem;
+				}
 			}
-			@media (min-width: 640px) { 
-				.container-custom { 
-					padding: 0 1.5rem; 
-				} 
+			@media (min-width: 1024px) {
+				.container-custom {
+					padding: 0 2rem;
+				}
 			}
-			@media (min-width: 1024px) { 
-				.container-custom { 
-					padding: 0 2rem; 
-				} 
+
+			/* PISTECH Color Classes */
+			.text-pistech-primary { color: #93C572; }
+			.text-pistech-accent { color: #A3E635; }
+			.text-pistech-light { color: #E4E4E7; }
+			.bg-pistech-dark { background-color: #111214; }
+			.bg-pistech-secondary { background-color: #1C1D20; }
+
+			/* Button Styles with PISTECH Colors */
+			.btn-primary {
+				background-color: #A3E635; /* pistech-accent para CTAs */
+				color: #111214; /* texto oscuro sobre fondo brillante */
+				font-weight: 600;
+				padding: 0.75rem 1.5rem;
+				border-radius: 0.5rem;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				border: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
 			}
-			.text-pistachio-900 { color: #3f4b30; }
-			.text-pistachio-600 { color: #6f8a4f; }
-			.btn-primary { 
-				background-color: #6f8a4f; 
-				color: white; 
-				font-weight: 500; 
-				padding: 0.75rem 1.5rem; 
-				border-radius: 0.5rem; 
-				text-decoration: none; 
-				display: inline-flex; 
-				align-items: center; 
-				border: none; 
-				cursor: pointer; 
+			.btn-primary:hover {
+				background-color: #93C572; /* pistech-primary en hover */
+				transform: translateY(-1px);
 			}
-			.btn-primary:hover { background-color: #5a6e40; }
-			.btn-secondary { 
-				background-color: white; 
-				color: #6f8a4f; 
-				font-weight: 500; 
-				padding: 0.75rem 1.5rem; 
-				border-radius: 0.5rem; 
-				border: 2px solid #6f8a4f; 
-				text-decoration: none; 
-				cursor: pointer; 
+
+			.btn-secondary {
+				background-color: transparent;
+				color: #93C572; /* pistech-primary */
+				font-weight: 500;
+				padding: 0.75rem 1.5rem;
+				border-radius: 0.5rem;
+				border: 2px solid #93C572;
+				text-decoration: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
 			}
-			.btn-secondary:hover { 
-				background-color: #f7f9f4; 
-				border-color: #5a6e40; 
+			.btn-secondary:hover {
+				background-color: #93C572;
+				color: #111214;
 			}
 		</style>
 	</head>
-	<body class="bg-white text-gray-900 font-sans">
-		<slot />
+	<body class="bg-pistech-dark text-pistech-light font-sans">
+		<!-- Scroll progress bar -->
+		<div class="scroll-progress"></div>
+
+		<!-- Header component with glassmorphism design -->
+		<Header />
+
+		<!-- Hero component only for homepage -->
+		{showHero && heroTitle && (
+			<Hero title={heroTitle} />
+		)}
+
+		<!-- Main content area for page-specific content -->
+		<main>
+			<slot />
+		</main>
+
+		<!-- Floating WhatsApp button for instant conversion -->
+		<WhatsAppButton
+			phoneNumber="5491123456789"
+			message="Hola! Me interesa conocer más sobre los servicios de PISTECH."
+		/>
+
+		<!-- Scroll animations controller -->
+		<ScrollAnimations />
 	</body>
 </html>
 
@@ -102,11 +190,11 @@ const { title, description = "Pistech - Software Factory especializada en desarr
 	html {
 		scroll-behavior: smooth;
 	}
-	
+
 	body {
 		font-display: swap;
 	}
-	
+
 	/* Optimize animations for performance */
 	@media (prefers-reduced-motion: reduce) {
 		*,
@@ -117,23 +205,22 @@ const { title, description = "Pistech - Software Factory especializada en desarr
 			transition-duration: 0.01ms !important;
 		}
 	}
-	
-	/* Custom scrollbar */
+
+	/* Custom scrollbar with PISTECH colors */
 	::-webkit-scrollbar {
 		width: 8px;
 	}
-	
+
 	::-webkit-scrollbar-track {
-		background: #f1f1f1;
+		background: #1C1D20; /* pistech-secondary */
 	}
-	
+
 	::-webkit-scrollbar-thumb {
-		background: #6f8a4f;
+		background: #93C572; /* pistech-primary */
 		border-radius: 4px;
 	}
-	
+
 	::-webkit-scrollbar-thumb:hover {
-		background: #5a6e40;
+		background: #A3E635; /* pistech-accent */
 	}
 </style>
-

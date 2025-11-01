@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pistech.com/sitemap-index.xml
+
+# Disallow crawling of certain paths (optional)
+# Disallow: /admin/
+# Disallow: /api/

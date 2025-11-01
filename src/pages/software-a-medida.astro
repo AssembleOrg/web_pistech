@@ -1,0 +1,338 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DynamicBanner from '../components/DynamicBanner.astro';
+import ServiceContactForm from '../components/ServiceContactForm.astro';
+import { X, Cog, Link, BarChart, Users, Package, Calendar, TrendingUp, Workflow, Database, CheckCircle, Zap, Shield, Server, Code, Cloud, MessageCircle } from 'lucide-astro';
+---
+
+<Layout
+	title="Software a Medida | Desarrollo Personalizado | PISTECH"
+	description="Desarrollamos software empresarial a medida que automatiza procesos y potencia tu negocio. CRM, ERP, sistemas internos. ¡Tecnología que transforma!"
+	heroTitle="Software que Revoluciona tu Empresa"
+	canonical="/software-a-medida"
+>
+	<!-- Dynamic Banner for Custom Software -->
+	<DynamicBanner section="software-a-medida" />
+
+	<!-- Main Content -->
+	<section class="py-20 bg-pistech-dark">
+		<div class="container-custom">
+			<div class="max-w-4xl mx-auto">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold text-pistech-light mb-6">
+						Software que <span class="text-pistech-accent">Transforma Empresas</span>
+					</h2>
+					<p class="text-xl text-gray-300 leading-relaxed">
+						¿Gastas 20+ horas semanales en tareas repetitivas? ¿Tus empleados pierden tiempo con procesos manuales?
+						<strong class="text-pistech-primary">El software correcto puede automatizar el 80% de esas tareas.</strong>
+					</p>
+				</div>
+
+				<!-- Problem Statement -->
+				<div class="bg-gradient-to-r from-red-500/10 to-orange-500/10 p-8 rounded-xl mb-12 border border-red-500/20">
+					<h3 class="text-2xl font-bold text-red-400 mb-4 text-center">
+						¿Tu Empresa Sufre Estos Problemas?
+					</h3>
+					<div class="grid md:grid-cols-2 gap-6">
+						<div class="space-y-3">
+							<div class="flex items-center">
+								<X class="w-5 h-5 text-red-400 mr-3" />
+								<span class="text-gray-300">Procesos manuales que consumen tiempo</span>
+							</div>
+							<div class="flex items-center">
+								<X class="w-5 h-5 text-red-400 mr-3" />
+								<span class="text-gray-300">Falta de integración entre sistemas</span>
+							</div>
+							<div class="flex items-center">
+								<X class="w-5 h-5 text-red-400 mr-3" />
+								<span class="text-gray-300">Errores humanos costosos</span>
+							</div>
+						</div>
+						<div class="space-y-3">
+							<div class="flex items-center">
+								<X class="w-5 h-5 text-red-400 mr-3" />
+								<span class="text-gray-300">Información dispersa y duplicada</span>
+							</div>
+							<div class="flex items-center">
+								<X class="w-5 h-5 text-red-400 mr-3" />
+								<span class="text-gray-300">Reportes que toman días generar</span>
+							</div>
+							<div class="flex items-center">
+								<X class="w-5 h-5 text-red-400 mr-3" />
+								<span class="text-gray-300">Falta de escalabilidad tecnológica</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Solution -->
+				<div class="bg-pistech-secondary p-8 rounded-xl mb-16 border border-pistech-primary/30">
+					<h3 class="text-2xl font-bold text-pistech-primary mb-6 text-center">
+						La Solución: Software Diseñado para TU Negocio
+					</h3>
+					<div class="grid md:grid-cols-3 gap-8">
+						<div class="text-center">
+							<Cog class="w-12 h-12 text-pistech-accent mx-auto mb-4" />
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Automatización Inteligente</h4>
+							<p class="text-gray-300 text-sm">Elimina tareas repetitivas y reduce errores humanos hasta 95%</p>
+						</div>
+						<div class="text-center">
+							<Link class="w-12 h-12 text-pistech-accent mx-auto mb-4" />
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Integración Total</h4>
+							<p class="text-gray-300 text-sm">Conecta todos tus sistemas en una plataforma unificada</p>
+						</div>
+						<div class="text-center">
+							<BarChart class="w-12 h-12 text-pistech-accent mx-auto mb-4" />
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Datos en Tiempo Real</h4>
+							<p class="text-gray-300 text-sm">Dashboards y reportes automáticos para decisiones rápidas</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Types of Software -->
+				<div class="mb-16">
+					<h3 class="text-2xl font-bold text-pistech-light mb-8 text-center">
+						Tipos de Software que <span class="text-pistech-accent">Desarrollamos</span>
+					</h3>
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+						<div class="bg-pistech-secondary p-6 rounded-xl border border-pistech-primary/20">
+							<Users class="w-8 h-8 text-pistech-accent mb-3" />
+							<h4 class="font-semibold text-pistech-light mb-2">CRM Personalizado</h4>
+							<p class="text-sm text-gray-400">Gestión completa de clientes, ventas y seguimiento automático</p>
+						</div>
+						<div class="bg-pistech-secondary p-6 rounded-xl border border-pistech-primary/20">
+							<Package class="w-8 h-8 text-pistech-accent mb-3" />
+							<h4 class="font-semibold text-pistech-light mb-2">ERP Empresarial</h4>
+							<p class="text-sm text-gray-400">Gestión integral de recursos, inventario y finanzas</p>
+						</div>
+						<div class="bg-pistech-secondary p-6 rounded-xl border border-pistech-primary/20">
+							<Calendar class="w-8 h-8 text-pistech-accent mb-3" />
+							<h4 class="font-semibold text-pistech-light mb-2">Sistemas de Turnos</h4>
+							<p class="text-sm text-gray-400">Reservas automáticas, calendarios y notificaciones</p>
+						</div>
+						<div class="bg-pistech-secondary p-6 rounded-xl border border-pistech-primary/20">
+							<TrendingUp class="w-8 h-8 text-pistech-accent mb-3" />
+							<h4 class="font-semibold text-pistech-light mb-2">Business Intelligence</h4>
+							<p class="text-sm text-gray-400">Analytics avanzado y reportes ejecutivos automatizados</p>
+						</div>
+						<div class="bg-pistech-secondary p-6 rounded-xl border border-pistech-primary/20">
+							<Workflow class="w-8 h-8 text-pistech-accent mb-3" />
+							<h4 class="font-semibold text-pistech-light mb-2">Automatización de Procesos</h4>
+							<p class="text-sm text-gray-400">Workflows personalizados para tu industria específica</p>
+						</div>
+						<div class="bg-pistech-secondary p-6 rounded-xl border border-pistech-primary/20">
+							<Database class="w-8 h-8 text-pistech-accent mb-3" />
+							<h4 class="font-semibold text-pistech-light mb-2">Gestores de Datos</h4>
+							<p class="text-sm text-gray-400">Sistemas seguros para organizar y acceder información crítica</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- ROI Calculator -->
+				<div class="bg-gradient-to-r from-pistech-primary/10 to-pistech-accent/10 p-8 rounded-xl mb-16 border border-pistech-primary/20">
+					<h3 class="text-2xl font-bold text-pistech-light mb-6 text-center">
+						Tu ROI en <span class="text-pistech-accent">12 Meses</span>
+					</h3>
+					<div class="grid md:grid-cols-3 gap-8 text-center">
+						<div>
+							<div class="text-3xl font-bold text-pistech-accent mb-2">40h</div>
+							<p class="text-gray-300">Semanales ahorradas</p>
+							<p class="text-sm text-gray-400">Por automatización</p>
+						</div>
+						<div>
+							<div class="text-3xl font-bold text-pistech-accent mb-2">85%</div>
+							<p class="text-gray-300">Reducción de errores</p>
+							<p class="text-sm text-gray-400">Procesos automatizados</p>
+						</div>
+						<div>
+							<div class="text-3xl font-bold text-pistech-accent mb-2">3x</div>
+							<p class="text-gray-300">Velocidad decisiones</p>
+							<p class="text-sm text-gray-400">Datos en tiempo real</p>
+						</div>
+					</div>
+					<div class="mt-8 text-center">
+						<p class="text-lg text-gray-300">
+							<strong class="text-pistech-primary">Inversión promedio: USD $15,000 - Ahorro anual: USD $45,000+</strong>
+						</p>
+					</div>
+				</div>
+
+				<!-- Our Process -->
+				<div class="mb-16">
+					<h3 class="text-2xl font-bold text-pistech-light mb-8 text-center">
+						Nuestro Proceso <span class="text-pistech-accent">Probado</span>
+					</h3>
+					<div class="grid md:grid-cols-4 gap-6">
+						<div class="text-center">
+							<div class="bg-pistech-accent text-pistech-dark w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Auditoría</h4>
+							<p class="text-gray-300 text-sm">Analizamos tus procesos actuales y identificamos oportunidades</p>
+						</div>
+						<div class="text-center">
+							<div class="bg-pistech-accent text-pistech-dark w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Diseño</h4>
+							<p class="text-gray-300 text-sm">Creamos la arquitectura y flujos optimizados para tu empresa</p>
+						</div>
+						<div class="text-center">
+							<div class="bg-pistech-accent text-pistech-dark w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Desarrollo</h4>
+							<p class="text-gray-300 text-sm">Construimos tu software con metodologías ágiles y feedback continuo</p>
+						</div>
+						<div class="text-center">
+							<div class="bg-pistech-accent text-pistech-dark w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">4</div>
+							<h4 class="text-lg font-semibold text-pistech-light mb-2">Implementación</h4>
+							<p class="text-gray-300 text-sm">Desplegamos, capacitamos a tu equipo y garantizamos adopción exitosa</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- What's Included -->
+				<div class="bg-pistech-secondary p-8 rounded-xl mb-16 border border-pistech-primary/20">
+					<h3 class="text-2xl font-bold text-pistech-light mb-6 text-center">
+						Todo lo que Incluye tu <span class="text-pistech-accent">Software Personalizado</span>
+					</h3>
+					<div class="grid md:grid-cols-2 gap-6">
+						<div class="space-y-4">
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Análisis completo de procesos actuales</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Diseño UX/UI personalizado</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Desarrollo completo front-end y back-end</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Base de datos optimizada y segura</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Dashboards y reportes personalizados</span>
+							</div>
+						</div>
+						<div class="space-y-4">
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Integración con sistemas existentes</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Testing exhaustivo y QA</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Capacitación completa del equipo</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">Documentación técnica y manual de usuario</span>
+							</div>
+							<div class="flex items-center">
+								<CheckCircle class="w-5 h-5 text-pistech-accent mr-3 flex-shrink-0" />
+								<span class="text-gray-300">6 meses soporte técnico incluido</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- CTA Section -->
+				<div class="text-center bg-gradient-to-r from-pistech-primary/10 to-pistech-accent/10 p-12 rounded-2xl border border-pistech-primary/20">
+					<h3 class="text-3xl font-bold text-pistech-light mb-4">
+						¿Listo para Automatizar tu Empresa?
+					</h3>
+					<p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+						Más de 200 empresas ya transformaron sus procesos con nuestro software.
+						<strong class="text-pistech-accent">Tu sistema puede estar funcionando en 12-16 semanas.</strong>
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+						<a
+							href="https://wa.me/5491123456789?text=Hola!%20Quiero%20desarrollar%20software%20a%20medida%20para%20automatizar%20mi%20empresa.%20¿Pueden%20ayudarme?"
+							class="btn-primary text-lg px-8 py-4 inline-flex items-center"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Calendar class="w-5 h-5 mr-2" />
+							Auditoría Gratuita
+						</a>
+						<div class="text-center">
+							<p class="text-pistech-accent font-semibold">Desde USD $15,000</p>
+							<p class="text-sm text-gray-400">ROI garantizado en 12 meses</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technologies -->
+	<section class="py-20 bg-pistech-secondary">
+		<div class="container-custom">
+			<h3 class="text-3xl font-bold text-pistech-light mb-12 text-center">
+				Tecnologías <span class="text-pistech-accent">Enterprise</span>
+			</h3>
+			<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+				<div class="bg-pistech-dark p-4 rounded-xl text-center border border-pistech-primary/20">
+					<Database class="w-8 h-8 text-pistech-accent mx-auto mb-2" />
+					<p class="text-sm text-gray-300">PostgreSQL</p>
+				</div>
+				<div class="bg-pistech-dark p-4 rounded-xl text-center border border-pistech-primary/20">
+					<Server class="w-8 h-8 text-pistech-accent mx-auto mb-2" />
+					<p class="text-sm text-gray-300">Node.js</p>
+				</div>
+				<div class="bg-pistech-dark p-4 rounded-xl text-center border border-pistech-primary/20">
+					<Code class="w-8 h-8 text-pistech-accent mx-auto mb-2" />
+					<p class="text-sm text-gray-300">React</p>
+				</div>
+				<div class="bg-pistech-dark p-4 rounded-xl text-center border border-pistech-primary/20">
+					<Cloud class="w-8 h-8 text-pistech-accent mx-auto mb-2" />
+					<p class="text-sm text-gray-300">AWS</p>
+				</div>
+				<div class="bg-pistech-dark p-4 rounded-xl text-center border border-pistech-primary/20">
+					<Zap class="w-8 h-8 text-pistech-accent mx-auto mb-2" />
+					<p class="text-sm text-gray-300">Python</p>
+				</div>
+				<div class="bg-pistech-dark p-4 rounded-xl text-center border border-pistech-primary/20">
+					<Shield class="w-8 h-8 text-pistech-accent mx-auto mb-2" />
+					<p class="text-sm text-gray-300">Docker</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Formulario de contacto específico para software a medida -->
+	<ServiceContactForm service="software-a-medida" />
+</Layout>
+
+<style>
+	.btn-primary {
+		animation: pulse-glow 2s infinite;
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			box-shadow: 0 0 20px rgba(163, 230, 53, 0.3);
+		}
+		50% {
+			box-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
+		}
+	}
+
+	.container-custom {
+		animation: fadeInUp 0.8s ease-out;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

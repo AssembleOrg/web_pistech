@@ -1,0 +1,404 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DynamicBanner from '../components/DynamicBanner.astro';
+import ServiceContactForm from '../components/ServiceContactForm.astro';
+import { Code, Smartphone, Zap, Shield, CheckCircle } from 'lucide-astro';
+
+const title = "Desarrollo Web | PISTECH - Sitios Web Profesionales";
+const description = "Creamos sitios web modernos, rápidos y optimizados que convierten visitantes en clientes. Especialistas en desarrollo web responsive y e-commerce.";
+const heroTitle = "Desarrollo Web que Convierte";
+---
+
+<Layout
+  title={title}
+  description={description}
+  heroTitle={heroTitle}
+>
+  <!-- Banner dinámico para desarrollo web -->
+  <DynamicBanner section="desarrollo-web" />
+
+  <!-- Sección de beneficios específicos -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="container-custom mx-auto max-w-6xl">
+
+      <!-- Por qué elegir nuestro desarrollo web -->
+      <div class="text-center mb-16 scroll-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-pistech-primary mb-6">
+          ¿Por qué tu Competencia nos Elige?
+        </h2>
+        <p class="text-lg text-pistech-light/80 max-w-2xl mx-auto">
+          Mientras otros hacen sitios web básicos, nosotros creamos <strong>máquinas de vender</strong> que trabajan 24/7 para tu negocio.
+        </p>
+      </div>
+
+      <!-- Grid de beneficios específicos -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 scroll-stagger">
+
+        <!-- Beneficio 1 -->
+        <div class="benefit-card bg-pistech-secondary p-8 rounded-xl border border-pistech-primary/20 hover:border-pistech-primary/40 transition-all group">
+          <div class="benefit-icon mb-6">
+            <Zap size={40} class="text-pistech-accent" />
+          </div>
+          <h3 class="text-xl font-semibold text-pistech-primary mb-4 group-hover:text-pistech-accent transition-colors">
+            Carga en menos de 2 segundos
+          </h3>
+          <p class="text-pistech-light/70 leading-relaxed mb-4">
+            Tu sitio será 3x más rápido que el promedio. Google premia la velocidad con mejor posicionamiento.
+          </p>
+          <div class="benefit-stat">
+            <span class="stat-number text-pistech-accent font-bold">+40%</span>
+            <span class="stat-text text-pistech-light/60 text-sm">más conversiones</span>
+          </div>
+        </div>
+
+        <!-- Beneficio 2 -->
+        <div class="benefit-card bg-pistech-secondary p-8 rounded-xl border border-pistech-primary/20 hover:border-pistech-primary/40 transition-all group">
+          <div class="benefit-icon mb-6">
+            <Smartphone size={40} class="text-pistech-accent" />
+          </div>
+          <h3 class="text-xl font-semibold text-pistech-primary mb-4 group-hover:text-pistech-accent transition-colors">
+            100% Responsive y Mobile-First
+          </h3>
+          <p class="text-pistech-light/70 leading-relaxed mb-4">
+            Diseñado primero para móviles. El 70% de tus clientes navega desde el celular.
+          </p>
+          <div class="benefit-stat">
+            <span class="stat-number text-pistech-accent font-bold">70%</span>
+            <span class="stat-text text-pistech-light/60 text-sm">tráfico móvil</span>
+          </div>
+        </div>
+
+        <!-- Beneficio 3 -->
+        <div class="benefit-card bg-pistech-secondary p-8 rounded-xl border border-pistech-primary/20 hover:border-pistech-primary/40 transition-all group">
+          <div class="benefit-icon mb-6">
+            <Shield size={40} class="text-pistech-accent" />
+          </div>
+          <h3 class="text-xl font-semibold text-pistech-primary mb-4 group-hover:text-pistech-accent transition-colors">
+            SEO Optimizado desde el Día 1
+          </h3>
+          <p class="text-pistech-light/70 leading-relaxed mb-4">
+            Tu sitio aparecerá en Google. Configuramos SEO técnico para que te encuentren fácil.
+          </p>
+          <div class="benefit-stat">
+            <span class="stat-number text-pistech-accent font-bold">+200%</span>
+            <span class="stat-text text-pistech-light/60 text-sm">visibilidad Google</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Proceso de trabajo específico -->
+      <div class="bg-pistech-dark/50 p-8 rounded-xl border border-pistech-primary/10 scroll-scale-in">
+        <h3 class="text-2xl font-bold text-pistech-primary mb-8 text-center">
+          Nuestro Proceso Probado en +50 Sitios Web
+        </h3>
+
+        <div class="grid md:grid-cols-4 gap-6">
+          <!-- Paso 1 -->
+          <div class="process-step text-center">
+            <div class="step-number">1</div>
+            <h4 class="text-lg font-semibold text-pistech-primary mb-2">Análisis</h4>
+            <p class="text-pistech-light/70 text-sm">Estudiamos tu competencia y definimos la estrategia perfecta</p>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="process-step text-center">
+            <div class="step-number">2</div>
+            <h4 class="text-lg font-semibold text-pistech-primary mb-2">Diseño</h4>
+            <p class="text-pistech-light/70 text-sm">Creamos mockups enfocados en conversión y UX</p>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="process-step text-center">
+            <div class="step-number">3</div>
+            <h4 class="text-lg font-semibold text-pistech-primary mb-2">Desarrollo</h4>
+            <p class="text-pistech-light/70 text-sm">Programamos con tecnología moderna y optimizada</p>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="process-step text-center">
+            <div class="step-number">4</div>
+            <h4 class="text-lg font-semibold text-pistech-primary mb-2">Lanzamiento</h4>
+            <p class="text-pistech-light/70 text-sm">Optimizamos y te capacitamos para el éxito</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sección de inclusiones -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-pistech-secondary">
+    <div class="container-custom mx-auto max-w-4xl">
+
+      <div class="text-center mb-12 scroll-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-pistech-primary mb-6">
+          Todo lo que Incluye tu Sitio Web
+        </h2>
+        <p class="text-lg text-pistech-light/80">
+          Sin sorpresas, sin costos ocultos. Todo incluido para que tengas éxito desde el primer día.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 scroll-stagger">
+
+        <!-- Lista de inclusiones -->
+        <div class="space-y-4">
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Hosting Premium por 1 año</span>
+              <p class="text-pistech-light/60 text-sm">Servidor rápido y seguro incluido</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Dominio .com incluido</span>
+              <p class="text-pistech-light/60 text-sm">Tu marca online por 1 año</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Certificado SSL gratis</span>
+              <p class="text-pistech-light/60 text-sm">Seguridad y confianza para tus clientes</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Google Analytics configurado</span>
+              <p class="text-pistech-light/60 text-sm">Métricas para optimizar tu negocio</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Capacitación personalizada</span>
+              <p class="text-pistech-light/60 text-sm">Te enseñamos a administrar tu sitio</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Formularios de contacto</span>
+              <p class="text-pistech-light/60 text-sm">Captás leads automáticamente</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Integración WhatsApp</span>
+              <p class="text-pistech-light/60 text-sm">Botón directo para conversaciones</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Optimización SEO básica</span>
+              <p class="text-pistech-light/60 text-sm">Para aparecer en Google</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Backup automático</span>
+              <p class="text-pistech-light/60 text-sm">Tu sitio siempre protegido</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item flex items-start gap-3">
+            <CheckCircle size={20} class="text-pistech-accent mt-1 flex-shrink-0" />
+            <div>
+              <span class="text-pistech-light font-semibold">Soporte 30 días gratis</span>
+              <p class="text-pistech-light/60 text-sm">Te ayudamos con cualquier duda</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA específico -->
+      <div class="text-center mt-12 scroll-scale-in">
+        <div class="bg-pistech-dark/50 p-8 rounded-xl border border-pistech-primary/20">
+          <p class="text-pistech-light/90 mb-2 text-xl font-semibold">
+            🎯 ¿Listo para tener el sitio web que tu negocio merece?
+          </p>
+          <p class="text-pistech-light/70 mb-6 text-lg">
+            Desde $299 USD - Pagás solo cuando apruebes el diseño
+          </p>
+          <a href="#contacto" class="cta-enhanced-primary">
+            <span class="cta-content">
+              <span class="cta-text">🚀 Quiero Mi Sitio Web</span>
+              <svg class="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+            <div class="cta-bg"></div>
+            <div class="cta-pulse"></div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Formulario de contacto específico -->
+  <ServiceContactForm service="desarrollo-web" />
+
+</Layout>
+
+<style>
+  /* Estilos específicos para página de desarrollo web */
+  .benefit-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #93C572, #A3E635);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .benefit-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .benefit-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba(147, 197, 114, 0.15), rgba(163, 230, 53, 0.05));
+    border: 1px solid rgba(147, 197, 114, 0.3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .benefit-card:hover .benefit-icon {
+    background: linear-gradient(135deg, rgba(147, 197, 114, 0.25), rgba(163, 230, 53, 0.1));
+    border-color: rgba(147, 197, 114, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(147, 197, 114, 0.2);
+  }
+
+  .benefit-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  /* Process steps */
+  .process-step {
+    position: relative;
+  }
+
+  .step-number {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #93C572, #A3E635);
+    color: #111214;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 auto 16px;
+  }
+
+  /* Inclusion items */
+  .inclusion-item {
+    padding: 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .inclusion-item:hover {
+    background: rgba(147, 197, 114, 0.05);
+  }
+
+  /* Import enhanced CTA styles from main page */
+  .cta-enhanced-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 18px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: #111214;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(163, 230, 53, 0.4);
+  }
+
+  .cta-enhanced-primary .cta-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cta-enhanced-primary .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #A3E635 0%, #93C572 100%);
+    transition: transform 0.3s ease;
+  }
+
+  .cta-enhanced-primary .cta-pulse {
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, #A3E635, #93C572);
+    border-radius: 50px;
+    opacity: 0;
+    animation: cta-pulse 2s infinite;
+  }
+
+  @keyframes cta-pulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+  }
+
+  .cta-enhanced-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(163, 230, 53, 0.5);
+  }
+
+  .cta-enhanced-primary:hover .cta-bg {
+    transform: scale(1.05) rotate(1deg);
+  }
+
+  .cta-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-enhanced-primary:hover .cta-icon {
+    transform: translateX(6px);
+  }
+</style>
