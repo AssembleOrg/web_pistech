@@ -393,19 +393,44 @@ const finalSubtitle = subtitle || config.subtitle;
         const formData = new FormData(form);
         const service = form.dataset.service;
 
-        // Here you would normally send to your backend
-        // For now, we'll simulate a successful submission
-        setTimeout(() => {
+        // Convert FormData to JSON
+        const data = Object.fromEntries(formData);
+
+        // Send to Web3Forms (free email service)
+        // Get your access key at: https://web3forms.com/
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: 'YOUR_WEB3FORMS_ACCESS_KEY_HERE', // Replace with your key from web3forms.com
+            ...data,
+            subject: `Nueva solicitud de ${service} desde Pistech Web`
+          })
+        })
+        .then(response => response.json())
+        .then(result => {
           // Remove loading state
           form.classList.remove('form-loading');
           submitBtn.innerHTML = originalText;
 
-          // Show success message
-          showSuccessMessage(form);
-
-          // Optional: Reset form
-          form.reset();
-        }, 2000);
+          if (result.success) {
+            // Show success message
+            showSuccessMessage(form);
+            // Reset form
+            form.reset();
+          } else {
+            showErrorMessage(form);
+          }
+        })
+        .catch(error => {
+          // Remove loading state
+          form.classList.remove('form-loading');
+          submitBtn.innerHTML = originalText;
+          showErrorMessage(form);
+        });
       });
     });
 
@@ -426,6 +451,26 @@ const finalSubtitle = subtitle || config.subtitle;
       // Remove success message after 5 seconds
       setTimeout(() => {
         successDiv.remove();
+      }, 5000);
+    }
+
+    function showErrorMessage(form) {
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-lg mb-6';
+      errorDiv.innerHTML = `
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+          Error al enviar. Por favor intenta de nuevo o usa WhatsApp.
+        </div>
+      `;
+
+      form.insertBefore(errorDiv, form.firstChild);
+
+      // Remove error message after 5 seconds
+      setTimeout(() => {
+        errorDiv.remove();
       }, 5000);
     }
   });

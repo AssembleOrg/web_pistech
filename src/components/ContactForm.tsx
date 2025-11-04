@@ -24,14 +24,32 @@ export default function ContactForm() {
     setSubmitStatus('idle');
 
     try {
-      // Here you would typically send data to your API endpoint
-      // await fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) });
+      // Send to Web3Forms (free email service)
+      // Get your access key at: https://web3forms.com/
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY_HERE', // Replace with your key from web3forms.com
+          name: data.name,
+          email: data.email,
+          phone: data.phone || '',
+          message: data.message,
+          subject: 'Nuevo contacto desde Pistech Web'
+        })
+      });
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const result = await response.json();
 
-      setSubmitStatus('success');
-      reset();
+      if (result.success) {
+        setSubmitStatus('success');
+        reset();
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
       setSubmitStatus('error');
     } finally {
